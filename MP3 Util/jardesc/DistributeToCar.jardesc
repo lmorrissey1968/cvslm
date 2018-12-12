@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="WINDOWS-1252"?>
+<jardesc>
+<jar path="E:/DistributeToCarCDs.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/MP3 Util/jardesc/DistributeToCar.jardesc" exportErrors="false" exportWarnings="false" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="true" mainClassHandleIdentifier="=MP3 Util/source&lt;com.lxm.mp3.util{DistributeToCarCD.java[DistributeToCarCD" manifestLocation="/Flagco/jardesc/ItemManager.mf" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<javaElement handleIdentifier="=MP3 Util/source&lt;com.lxm.mp3.util"/>
+<javaElement handleIdentifier="=MP3 Util/source&lt;com.lxm.mp3"/>
+<javaElement handleIdentifier="=MP3 Util/source&lt;com.lxm.test"/>
+<javaElement handleIdentifier="=MP3 Util/source&lt;com.lxm.mp3.test"/>
+<javaElement handleIdentifier="=Common Utilities/source"/>
+</selectedElements>
+</jardesc>

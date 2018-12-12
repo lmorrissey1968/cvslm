@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+<jar path="C:/Documents and Settings/All Users/Desktop/ItemManager/ItemManager.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/Flagco/jardesc/ItemManager.jardesc" exportErrors="false" exportWarnings="false" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="false" mainClassHandleIdentifier="=Flagco/source&lt;com.flagco.onnlinestore.db{ItemManager.java[ItemManager" manifestLocation="/Flagco/jardesc/ItemManager.mf" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<javaElement handleIdentifier="=Flagco/source"/>
+</selectedElements>
+</jardesc>

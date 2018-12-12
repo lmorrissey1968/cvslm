@@ -1,0 +1,183 @@
+$Id: ID3V2.txt,v 1.1 2004/12/14 11:20:13 g137997 Exp $
+
+Documentation for the main change since 1.6.0d3: ID3V2 tags
+===========================================================
+
+V2 tags get detected and decoded within most methods of ID3Reader.
+ID3Reader may or may not have encountered a v2 tag during an operation, if it
+has, you can get it be calling
+
+     ID3Reader.getV2Tag ();
+
+This is bad and stupid, but will change!
+Now that method either gave you a tag or null.
+However, now that you have the tag, you can either display its contents, edit
+it and/or write it back to the file (or any file you'd like...).
+
+
+Supported V2 Frames
+===================
+
+There should be no problem reading all Frames possible, but this version 
+(1.6.0d5) explicitly only supports the Frames that WinAmp does. They are:
+TRCK, TENC, WXXX, TCOP, TOPE, TCOM, COMM, TYER, TCON, TALB, TPE1 and TIT2
+
+All other Frames starting with a "T" or a "W" should already work as well, 
+but haven't been tested thoroughly, at least I haven't and no one told me 
+they work yet.
+
+
+Usage
+=====
+
+I included some usage examples in the examples package but here is what you 
+can do:
+
+
+Display all contained ID3V2 frames
+----------------------------------
+
+Okay, you can't display all of them, just the ones that can create a
+JComponent to display themselves (have a look at ID3V2Frame.canDisplay ()
+and ID3V2Frame.createJPanel ()). Of course if you write your own Components
+to display all frames, you still can display all, but not yet with my
+package alone..
+
+To get a list of all display Components, use
+
+       ID3V2Tag v2tag = ID3Reader.getV2Tag ();
+       Vector allDisplays = new Vector ();
+       Iterator iter = v2tag.getFrames ().iterator ();
+       while (iter.hasNext ()) {
+              ID3V2Frame frm = (ID3V2Frame)iter.next ();
+	      if (frm.canDisplay ())
+                  allDisplays.add (frm.createJPanel (false, false));
+              }
+       }
+
+Now you have a collection of JPanels that contain Components to display the
+contents of each frame that can display itself.
+
+
+Editing all contained Frames
+----------------------------
+
+A similar restriction applies to editing frames (have a look at
+ID3V2Frame.canEdit ()): not all Frames have an implementation for creating
+their own editing Components (yet).
+
+To get a list of all edit Components, use
+(working code in examples/id3d2.java):
+
+		ID3V2Tag v2tag = x.getV2Tag ();
+		if (v2tag != null) {
+		    final Vector editPanels = new Vector ();
+		    java.util.Iterator iter = v2tag.getFrames ().iterator ();
+		    while (iter.hasNext ()) {
+			ID3V2Frame frm = (ID3V2Frame)iter.next ();
+			if (frm.canEdit ())
+			   editPanels.add (frm.createJPanel(true, false));
+		    }
+
+Now you can add all these Components to a JFrame or the like.
+If the user is done editing, you can update all data in the frames belonging
+to these Components with:
+
+   Iterator iter = editPanels.iterator ();
+   while (iter.hasNext ()) ((Id3JPanel)iter.next ()).updateData ();
+
+
+But createJPanel has another parameter that hasn't been used in these examples
+(take a look at examples/id3d.java): selfupdate.
+This is meant for situations where you do not want the user to edit all
+frames, but only one (maybe you only show him a list of all available frames
+and let him edit one on double click..), as it creates its own "OK" button.
+As you surely would like to know when the user has hit the button, you can
+add a simple Listener to the panel (Id3Jpanel.addUpdateListener ()).
+
+
+Writing an ID3V2Tag
+-------------------
+
+That is as easy as writing a V1 tag (if nothing goes wrong :-) ):
+
+      ID3V2Writer.write (File f, ID3V2Tag tag)
+
+This takes care of either updating an existing tag or rewriting the file to 
+add a tag/expand a tag
+
+
+How to manage/edit a V2 Tag
+---------------------------
+
+First of all you need a V2 Tag. You can either get one by reading it from
+a file or constructing your own (how to copy V1 tags to V2 tags will be
+explained later). For the latter, just call
+
+	  ID3V2Tag v2tag = new ID3V2Tag ()
+
+This will take care of all neccessary steps.
+Now you would like to add Frames. Simply create one (or more). For example the
+album Frame:
+
+   FrameTALB talb = new FrameTALB ();
+
+Set the value (or do that later..)
+
+   talb.setText ("From Far Beyond");
+
+and add this Frame to the tag:
+
+   v2tag.addFrame (talb);
+
+At this time (Version 1.6.0d5) you need to make sure you do not add a Frame
+more than once and that you do not add Frames that are mutually exclusiv.
+If you do, this won't break the code but it might result in illegal tags.
+
+If you want to remove that Frame again, just call
+
+   v2tag.removeFrame (talb);
+
+
+Simulating WinAmp
+-----------------
+
+The most common use of v2 tags right now is restricted to a small number
+of Frames (and even their contents isn't fully used). They are:
+
+TRCK, TENC, WXXX, TCOP, TOPE, TCOM, COMM, TYER, TCON, TALB, TPE1 and TIT2
+
+To make it more easy for you, I created a facade so you do not need to
+worry too much: de.ueberdosis.mp3info.facades.Wamp
+
+This manages the information WinAmp lets you edit.
+
+To use this you can
+ - Create a V2 tag from a V1 tag    ( new Wamp (ID3Tag) )
+ - Copy an existing V2 tag          ( new Wamp (ID3V2Tag) )
+ - or create an empty template      ( new Wamp () )
+
+Now you can edit/retrieve the data (title, artist, album, year, genre, 
+comment, composer, original artist, copyright, URL, encoded by) in the 
+simplified way WinAmp does.
+
+To write the data to a file, you can either get a V2 tag (Wamp.getV2Tag ())
+or a V1 tag containing the data (Wamp.getV1Tag ()), so you can also
+create a Wamp from an existing V2 tag and get a V1 tag that contains the
+data (ie. copy from V2 to V1).
+
+
+
+The internal GUI
+================
+
+Is IMHO neccessary as there are a lot of frames that are far more complex
+than Album or Comment (and even that has more data than WinAmp shows).
+
+The created Gui-elements are as basic as possible, but can be changed a bit
+by changing the sizes (and soon more) in de.ueberdosis.mp3info.Configuration
+(yes, that is a correct placement for that class will contain more
+configurable options in the future).
+
+Right now only the Frames that are editable via Wamp can create Panels. And
+they are always swing components.

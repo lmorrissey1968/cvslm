@@ -1,0 +1,52 @@
+// **** Multiple Choice Single Answer ****
+@Multi("What is three plus three (3+3)?",q001,"Addition"){
+	@fb("Correct","Incorrect","Quitter")
+	@a(0,"Zero (0)","Zero is the result of 3-3")
+	@a(1,"Six (6)") // Correct Answer
+	@a(0,"Nine (9)","Nine is the result of 3*3")
+	@a(0,"One (1)","One is the result of 3/3")
+}
+
+// **** Multiple Choice Multiple Answer ****
+@Multi("Which numbers are prime (i.e. divisible only by one and themselves)?",q002,"bookmark1"){
+	@fb("Correct","Incorrect","Loser")
+	@a(0,"6","6 is divisible by 2 and 3")
+	@a(1,"7","7 is divisible only by 1 and itself")
+	@a(0,"8","8 is divisible by 2 and 4")
+	@a(0,"9","9 is divisible by 3")
+	@a(0,"10","10 is divisible by 2 and 5")
+	@a(1,"11","11 is divisible only by 1 and itself")
+}
+
+// **** True/False (MCSA with 2 choices) ****
+@Multi("Tweleve times twelve (or twelve squared) equals 144?",q003,"Squares"){
+	@fb("Correct","Incorrect","Redneck")
+	@a(1,"True")
+	@a(0,"False","This is, in fact, true!")
+}
+
+// **** Matching ****
+@Match("Match these movie characters (and the person who played them) to their respective movie",q005,"Movies"){
+	@fb("Correct","Incorrect","Weirdo")
+	@a(1,"Michael Corleone (Al Pacino)","The Godfather")
+	@a(1,"Luke Skywalker (Mark Hamill)","Star Wars")
+	@a(1,"Indiana Jones (Harrison Ford)","Raiders of the Lost Ark")
+	@a(1,"Jack Dawson (Leonardo DiCaprio)","Titanic")
+	@a(1,"Ty Webb (Chevy Chase)","Caddyshack")
+	@a(1,"Sarah Conner (Linda Hamilton)","The Terminator")
+}
+
+// **** Matching ****
+@Match("Match the following quotes and people:",q006,"Quotes"){
+	@fb("Correct","Incorrect","Stupid")
+	@a(1,"Four score and seven years ago","Abraham Lincoln")
+	@a(1,"Oh say can you see, By the dawns early light","Francis Scott Key")
+	@a(1,"We choose to go to the moon in this decade...","John F. Kennedy")
+	@a(1,"Read my lips, NO new taxes.","George W. Bush")
+	@a(1,"The only thing we have to fear, is fear itself","F.D.R.")
+}
+
+@Multi("Free Question",freebee){
+	@fb("Right","There is no way you are that stupid","Dummy")	
+	@a(1,"The only answer")
+}

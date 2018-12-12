@@ -1,0 +1,43 @@
+$Id: Usage.txt,v 1.1 2004/12/14 11:20:13 g137997 Exp $
+
+So you want to get information about an MP3 file...
+
+That's quite easy if you just take a look at the constructor of ID3Reader:
+
+First of all you open a file:
+
+        RandomAccessFile in = new RandomAccessFile(filename,"r");
+
+Then you get a first impression on the file including the ID3 (v1) tag and 
+bitrates and layers and the like of the FIRST FRAME.
+
+        xtag = readExtendedTag (in);
+
+That helps a bit already but leaves too much to the imagination as VBR encoded
+files definitely do not constantly use the bitrate of the first frame (sounds 
+almost logical, doesn't it?). If you aren't quite sure that the file that is 
+to be examined has a constant bitrate, you have to call
+
+        checkAllFrames (in);
+
+as it reads EVERY frame, therefore knowing the running time of the whole file.
+This has to be called AFTER readExtendedTag () as it fills its information 
+into the tag that has been created then.
+
+Now, be nice and close the file:
+
+        in.close ();
+
+
+
+So, what does that mean? 
+
+- The whole procedure is slow, each of the frames (a 10 minute song at 128 
+  kbit has almost 50.000 frames) has to be read and analyzed. On a standard 
+  PC (600 MHz Athlon) this takes some seconds.
+
+- If you know a file is non-VBR you can skip checkAllFrames as long as you do 
+  not want ID3v2 information (ID3v2-tag detection is done there as well).
+
+
+Further Reading: ID3V2.txt

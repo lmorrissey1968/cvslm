@@ -1,0 +1,46 @@
+$Id: changes.txt,v 1.1 2004/12/14 11:20:13 g137997 Exp $
+
+Changes for 1.6.0d6
+===================
+All implemented classes have a copying constructor now. That removed a
+bug that lead to a NoSuchMethodException.
+Also some commenting has been completed.
+
+Changes for 1.6.0d5
+===================
+Mainly the naming of the text-frames has been changed. FrameTEXT and FrameText aren't mistaken
+by Windows anymore, as FrameText has been renamed to FrameT
+
+
+Changes for 1.6.0d4
+===================
+A lot of work has been put into decoding ID3V2-Frames. So there are a lot of frames that
+know what to do..
+
+Changes for 1.6.0d3
+===================
+ID3V2 tags are no longer only examined by looking at their headers, but the
+contained frames are decoded as far as they are implemented (only the basic 
+ones as yet)
+
+Notes
+=====
+The main change for most users is that they don't get bugged so much by debugging output.
+
+The end user only sees the information that is basic to the file like bitrates (and the information in the ID3V1 tag, V2 tag information will be displayed in a future release)
+
+Developers can set the level of debug output with a statement like this:
+de.ueberdosis.util.OutputCtr.setLevel (0);
+The level is a number between 0 and ... (normally 5, but sometimes I use more).
+
+
+Changes for 1.6.0d2
+===================
+- new ID3Reader () first checks if a file is VBR before examining the whole file.
+  Speeds things for fixed bitrate files hell up!
+
+Changes for 1.6.0d1
+===================
+
+- ID3Reader doesn't cough and die when it encounters gibberish. It just skips it.
+- ID3Writer.write () should not cause IOException: "negative seek offset" anymore

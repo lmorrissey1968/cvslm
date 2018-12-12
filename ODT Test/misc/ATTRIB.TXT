@@ -1,0 +1,43 @@
+// Background Colors: Feedback Bar
+@Color(b_feed_cor,153,204,255)  // Correct (Light Blue)
+@Color(b_feed_inc,211,179,236)  // Incorrect (Purple)
+@Color(b_feed_rev,153,204,204)  // Revealed (Teal)
+
+// Foreground Colors: Feedback Bar
+@Color(f_feed_cor,255,255,255)  // Correct (White)
+@Color(f_feed_inc,255,255,255)  // Incorrect (White)
+@Color(f_feed_rev,255,255,255)  // Revealed (White)
+
+// Marked Answer Colors
+@Color(b_mark_cor,0,255,255)	// (Cyan)
+@Color(b_mark_inc,0,0,0)		// (Black)
+
+@Color(f_mark_cor,0,0,255)		// (Blue)
+@Color(f_mark_inc,255,255,0)	// (Yellow)
+
+@Color(b_hilite,0,0,200)		// (Blueish)
+@Color(f_hilite,255,255,255)	// (White)
+	
+@Color(b_def_match,200,200,200)	// (Grey)
+@Color(f_def_match,0,0,0)		// (Black)
+
+// Fonts
+@Font(progind,"Helvetica",BOLD,16)	// Progress Indicator (i.e. 1 of 10)
+@Font(qbody,"Helvetica",PLAIN,14)	// Question Body
+@Font(answer,"Helvetica",PLAIN,12)	// Answers
+@Font(feed,"Helvetica",PLAIN,12)	// Feedback
+
+// Test Results
+@Var(result_part,"%1 of %2 questions attempted <BR> %0 of %1 answered correctly <BR> Score: %3%%")
+@Var(result_full,"%0 of %2 questions answered correctly <BR> Score: %4%%")
+@Font(result_font,"Helvetica",BOLD,22)
+
+@Var(test_results,"Go To HADES")
+@Var(extr_msg,"To re-enter the test click the 'Exit/Re-Enter' button")
+@Font(extr_msg_font,"Helvetica",PLAIN,12)
+
+@Var(cert_passed_msg,"You have successfully passed the test.|Please enter your name as you would like it to appear on a certificate of completion")
+@Var(cert_passed_titlebar,"You Passed")
+
+@Var(cert_failed_msg,"You have failed the test")
+@Var(cert_failed_titlebar,"You Did Not Pass")

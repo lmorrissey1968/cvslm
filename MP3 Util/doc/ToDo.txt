@@ -1,0 +1,18 @@
+$Id: ToDo.txt,v 1.1 2004/12/14 11:20:13 g137997 Exp $
+
+(done) V2 Tags need a way to remove a tag.
+
+(done) When writing, only non-empty tags should be written.
+
+Let the user/programmer decide how much V2-padding is to be used.
+
+For some time:
+  Split the functionalities of 
+     - reading a V1 Tag
+     - examining the whole file (for playing times)
+     - reading a V2 Tag
+     - And a combination of the above
+
+Remove V1 or V2 tags from a file.
+
+Decode and understand a LAME- (and such) -VBR-Header.
