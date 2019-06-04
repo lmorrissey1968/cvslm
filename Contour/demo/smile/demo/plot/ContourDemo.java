@@ -35,34 +35,36 @@ import smile.plot.Palette;
 @SuppressWarnings("serial")
 public class ContourDemo extends JPanel {
     public ContourDemo() {
-        super(new GridLayout(1,1));
+        super(new GridLayout(1,2));
         setBackground(Color.white);
 
-        int n = 41;
-        double[] x = new double[n];
-        for (int i = 0; i < n; i++)
+        int nx = 41;
+        double[] x = new double[nx];
+        for (int i = 0; i < nx; i++)
             x[i] = -2.0 + 0.1 * i;
 
-        int m = 51;
-        double[] y = new double[m];
-        for (int i = 0; i < m; i++)
+        int ny = 51;
+        double[] y = new double[ny];
+        for (int i = 0; i < ny; i++)
             y[i] = -2.0 + 0.1 * i;
 
-        double[][] z = new double[m][n];
+        double[][] z = new double[ny][nx];
         
-        System.out.printf("Y/X,%s\n",IntStream.range(0,n).mapToObj(xi->String.format("%.1f",x[xi])).collect(Collectors.joining(",")));
-        for (int yi = 0; yi < m; yi++) {
-        	System.out.printf("%.1f",y[yi]);
-            for (int xi = 0; xi < n; xi++) {
-            	System.out.printf(",%s",x[xi] * Math.exp(-x[xi]*x[xi] - y[yi]*y[yi]));
-                z[yi][xi] = x[xi] * Math.exp(-x[xi]*x[xi] - y[yi]*y[yi]) * 1E5;
-            }
-            System.out.println();
+        //System.out.printf("Y/X,%s\n",IntStream.range(0,n).mapToObj(xi->String.format("%.1f",x[xi])).collect(Collectors.joining(",")));
+        //for (int yi = 0; yi < m; yi++) {
+        //	System.out.printf("%.1f",y[yi]);
+        //    for (int xi = 0; xi < n; xi++) {
+        //    	System.out.printf(",%s",x[xi] * Math.exp(-x[xi]*x[xi] - y[yi]*y[yi]));
+        //    }
+        //    System.out.println();
+        //}
+        
+        for (int yi = 0; yi < ny; yi++)for (int xi = 0; xi < nx; xi++) {
+        	z[yi][xi] = x[xi] * Math.exp(-x[xi]*x[xi] - y[yi]*y[yi]);
         }
-
         
-        //add(Contour.plot(x, y, z, IntStream.range(-10,10).mapToDouble(i->i*0.08).toArray()));
-        add(Contour.plot(x, y, z));
+        add(Contour.plot(x, y, z, IntStream.range(-10,10).mapToDouble(i->i*0.025).toArray()));
+        //add(Contour.plot(x, y, z));
 
 		//double[] c = new double[9];
 		//for (int i = 0; i < c.length; i++) {
