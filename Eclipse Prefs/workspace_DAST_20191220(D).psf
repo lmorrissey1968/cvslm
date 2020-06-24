@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,file:///D:\GitRepos\aero-oa.viewer.core,master,CADRG"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.util.core,master,Common Utilities"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.util.core,master,Common Utilities UNIT TEST"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.util.core,master,Common3D"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,DAST"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,DAST UNIT TEST"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,DAT Decoder Examples"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,ELINT_Utility"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,ELINT_Viewer"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.util.core,master,Jackcess"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.util.core,master,Java3d_res"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,Java8 Runtime"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.dast.core,master,MOJO Docs"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.util.core,master,POI"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.viewer.core,master,Services"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.rcat.flow,master,terrain"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.rcat.flow,master,terrain3D"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.viewer.core,master,Viewer2D"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.viewer.core,master,Viewer2D UNIT TEST"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.viewer.core,master,Viewer2DCADRG"/>
+<project reference="1.0,file:///D:\GitRepos\aero-oa.rcat.flow,master,Viewer2DTerrain"/>
+</provider>
+</psf>

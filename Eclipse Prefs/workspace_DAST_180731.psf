@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Viewer/aero-oa.viewer.core.git,master,CADRG"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Util/aero-oa.util.core.git,master,Common Utilities"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Util/aero-oa.util.test.git,master,Common Utilities UNIT TEST"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Util/aero-oa.util.core.git,master,Common3D"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.core.git,master,DAST"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.test.git,master,DAST UNIT TEST"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.test.git,master,DAT Decoder Examples"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.core.git,master,ELINT_Utility"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.core.git,master,ELINT_Viewer"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Util/aero-oa.util.core.git,master,Jackcess"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Util/aero-oa.util.core.git,master,Java3d_res"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.core.git,master,Java8 Runtime"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Dast/aero-oa.dast.test.git,master,MOJO Docs"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Util/aero-oa.util.core.git,master,POI"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Viewer/aero-oa.viewer.core.git,master,Services"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/RCAT/aero-oa.rcat.flow.git,master,terrain"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/RCAT/aero-oa.rcat.flow.git,master,terrain3D"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Viewer/aero-oa.viewer.core.git,master,Viewer2D"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/Viewer/aero-oa.viewer.core.git,master,Viewer2DCADRG"/>
+<project reference="1.0,git@gitlab.lmms.lmco.com:AeroOA/RCAT/aero-oa.rcat.flow.git,master,Viewer2DTerrain"/>
+</provider>
+</psf>

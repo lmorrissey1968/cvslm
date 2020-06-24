@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/IER/aero-oa.ier.core.git,master,BootstrapLauncher"/>
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/Util/aero-oa.util.core.git,master,Common Utilities"/>
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/IER/aero-oa.ier.core.git,master,JColisar"/>
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/IER/aero-oa.ier.data.git,master,JColisar TEST DATA"/>
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/IER/aero-oa.ier.core.git,master,JColisar UNIT TEST"/>
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/IER/aero-oa.ier.core.git,master,jSDF"/>
+<project reference="1.0,https://gitlab.lmms.lmco.com/AeroOA/Util/aero-oa.util.core.git,master,POI"/>
+</provider>
+</psf>

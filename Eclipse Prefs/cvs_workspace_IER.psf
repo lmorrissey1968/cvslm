@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Common Utilities,Common Utilities"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,JColisar,JColisar"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS1D,JColisar UNIT TEST,JColisar UNIT TEST"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,jSDF,jSDF"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,POI,POI"/>
+</provider>
+</psf>

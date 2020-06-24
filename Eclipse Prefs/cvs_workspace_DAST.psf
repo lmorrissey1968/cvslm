@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,CADRG,CADRG"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Common Utilities,Common Utilities"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Common Utilities UNIT TEST,Common Utilities UNIT TEST"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Common3D,Common3D"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,DAST,DAST"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS1D,DAST UNIT TEST,DAST UNIT TEST"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,ELINT_Utility,ELINT_Utility"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,ELINT_Viewer,ELINT_Viewer"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Jackcess,Jackcess"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Java3d_res,Java3d_res"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS1L,MOJO Docs,MOJO Docs"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,POI,POI"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Services,Services"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,terrain,terrain"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,terrain3D,terrain3D"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Viewer2D,Viewer2D"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Viewer2DCADRG,Viewer2DCADRG"/>
+<project reference="1.0,:extssh:maroawl.mar.lmco.com:/repository/CVS,Viewer2DTerrain,Viewer2DTerrain"/>
+</provider>
+</psf>
