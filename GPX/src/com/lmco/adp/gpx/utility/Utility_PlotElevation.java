@@ -28,11 +28,12 @@ import com.lmco.adp.utility.LatLon;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
 public class Utility_PlotElevation {
-	public static final int TICKS = 200;
-	public static GPX[] data;
+	public static int TICKS = 200;
+	public static GPX[] DATA;
 	
 	public static void main(String[] args) {
-		data = 
+		TICKS = Integer.parseInt(args[0]);
+		DATA = 
 			getFiles(args)
 			.peek(System.out::println)
 	    	.map(LambdaExceptionWrap.wrapF(FileInputStream::new))
@@ -41,14 +42,14 @@ public class Utility_PlotElevation {
 	    ;
 		
 		new ChartFrame(new ChartComponent("Elevation Profile Plot","Distance(Miles)","Elevation(Feet)")){{
-			Stream.of(data)
+			Stream.of(DATA)
 				.map(gpx->getTrackElevationPlot(gpx))
 	        	.forEach(xy->addSeries(xy))
         	;
 			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
-			DoubleSummaryStatistics elevation = getTrackPoints(Stream.of(data))
+			DoubleSummaryStatistics elevation = getTrackPoints(Stream.of(DATA))
 				.mapToDouble(TrackPoint::getElevationFeet)
 				.summaryStatistics()
 			;
@@ -121,8 +122,8 @@ public class Utility_PlotElevation {
 
 	public static final Stream<File> getFiles(String[] args) {
 		return 
-			args.length>0
-			? Stream.of(args).map(File::new)
+			args.length>1
+			? Stream.of(args).skip(1).map(File::new)
 			: Stream.of(new File(".").listFiles())
 		;
 	}
