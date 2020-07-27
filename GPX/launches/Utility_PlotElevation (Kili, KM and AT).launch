@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/GPX/src/com/lmco/adp/gpx/utility/Utility_PlotElevation.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.lmco.adp.gpx.utility.Utility_PlotElevation"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="1000&#13;&#10;&quot;Kilimanjaro.gpx&quot;&#13;&#10;&quot;Recording - Jul 22, 08_34.gpx&quot;&#13;&#10;&quot;Appalachian Trail_ Springer Mountain to North Carolina Border.gpx&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="GPX"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:GPX/data}"/>
+</launchConfiguration>

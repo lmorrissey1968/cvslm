@@ -42,10 +42,17 @@ public class Utility_PlotElevation {
 	    ;
 		
 		new ChartFrame(new ChartComponent("Elevation Profile Plot","Distance(Miles)","Elevation(Feet)")){{
-			Stream.of(DATA)
-				.map(gpx->getTrackElevationPlot(gpx))
-	        	.forEach(xy->addSeries(xy))
-        	;
+            Stream.of(DATA)
+            	.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
+            	.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
+            ;
+
+            //Stream.of(DATA)
+            //	.flatMap(new GPX2XYS())
+            //	.forEach(xy->addSeries(xy))
+            //;
+			
+			
 			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
@@ -71,18 +78,33 @@ public class Utility_PlotElevation {
 			.map(TrackSeg::getTrackPoints).flatMap(Stream::of)
 		;
 	}
-	
+
 	public static Stream<TrackPoint> getTrackPoints(GPX gpx) {
 		return Stream.of(gpx.getTracks())
 			.map(Track::getTrackSegs).flatMap(Stream::of)
 			.map(TrackSeg::getTrackPoints).flatMap(Stream::of)
 		;
 	}
-
-	private static double accumDist = 0;
 	
-	public static XYSeries getTrackElevationPlot(GPX gpx) {
-		return getTrackPoints(gpx).collect(new TrackPlot(gpx.getName(),accumDist,v->accumDist = v));
+	public static class GPX2XYS implements Function<GPX,Stream<XYSeries>> {
+		private double dist = 0;
+		private String name = "";
+		
+		public Stream<XYSeries> apply(GPX gpx) {
+			return 
+				Stream.of(gpx.getTracks())
+				.peek(trk->name = trk.getName())
+				.map(Track::getTrackPointStream)
+				.map(tps->tps.collect(new TrackPlot(name,dist,v->dist = v)))
+			;
+		}
+	}
+	
+	public static class FlatGPX2XYS implements Function<GPX,XYSeries> {
+		private double dist = 0;
+		public XYSeries apply(GPX gpx) {
+			return gpx.getTrackPointStream().collect(new TrackPlot(gpx.getName(),dist,v->dist = v));
+		}
 	}
 	
 	public static class TrackPlot implements Collector<TrackPoint,XYSeries,XYSeries> {
