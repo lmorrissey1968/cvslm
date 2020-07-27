@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" creator="AllTrails.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <name><![CDATA[Recording - Jul 22, 08:34]]></name>
-    <desc><![CDATA[]]></desc>
+    <name><![CDATA[Kennesaw Mountain]]></name>
+    <desc><![CDATA[Recording - Jul 22, 08:34]]></desc>
     <link href="http://www.alltrails.com">
       <text>AllTrails, LLC</text>
     </link>
@@ -21,8 +21,8 @@
     <desc><![CDATA[]]></desc>
   </wpt>
   <trk>
-    <name><![CDATA[Kennesaw Mountain (20200722.0834)]]></name>
-    <desc><![CDATA[]]></desc>
+    <name><![CDATA[Kennesaw Mountain]]></name>
+    <desc><![CDATA[Recording - Jul 22, 08:34]]></desc>
     <trkseg>
       <trkpt lat="33.96348" lon="-84.59358">
         <ele>316.72</ele>

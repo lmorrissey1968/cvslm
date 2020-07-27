@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" creator="AllTrails.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <name><![CDATA[Trail Planner Map]]></name>
+    <name><![CDATA[AT-GA: NC Border to Springer]]></name>
     <desc><![CDATA[]]></desc>
     <link href="http://www.alltrails.com">
       <text>AllTrails, LLC</text>
@@ -9,7 +9,7 @@
     <bounds minlat="34.62669" minlon="-84.19967" maxlat="34.9922" maxlon="-83.58797"/>
   </metadata>
   <trk>
-    <name><![CDATA[AT GA - NC Border to Springer Mountain]]></name>
+    <name><![CDATA[AT-GA: NC Border to Springer]]></name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>

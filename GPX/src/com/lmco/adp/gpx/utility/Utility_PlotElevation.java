@@ -41,17 +41,21 @@ public class Utility_PlotElevation {
 	    	.toArray(GPX[]::new)
 	    ;
 		
-		new ChartFrame(new ChartComponent("Elevation Profile Plot","Distance(Miles)","Elevation(Feet)")){{
-            Stream.of(DATA)
-            	.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
-            	.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
-            ;
+		new ChartFrame<ChartComponent>(new ChartComponent("Elevation Profile Plot","Distance(Miles)","Elevation(Feet)")){{
+//            Stream.of(DATA)
+//            	.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
+//            	.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
+//            ;
 
+            Stream.of(DATA)
+	        	.map(new FlatGPX2XYS())
+	            .forEach(this::addSeries)
+	        ;
+            
             //Stream.of(DATA)
             //	.flatMap(new GPX2XYS())
             //	.forEach(xy->addSeries(xy))
             //;
-			
 			
 			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -101,9 +105,8 @@ public class Utility_PlotElevation {
 	}
 	
 	public static class FlatGPX2XYS implements Function<GPX,XYSeries> {
-		private double dist = 0;
 		public XYSeries apply(GPX gpx) {
-			return gpx.getTrackPointStream().collect(new TrackPlot(gpx.getName(),dist,v->dist = v));
+			return gpx.getTrackPointStream().collect(new TrackPlot(gpx.getName(),0,v->{}));
 		}
 	}
 	

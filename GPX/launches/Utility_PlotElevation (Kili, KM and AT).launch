@@ -7,7 +7,7 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.lmco.adp.gpx.utility.Utility_PlotElevation"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="1000&#13;&#10;&quot;Kilimanjaro.gpx&quot;&#13;&#10;&quot;Recording - Jul 22, 08_34.gpx&quot;&#13;&#10;&quot;Appalachian Trail_ Springer Mountain to North Carolina Border.gpx&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="1000&#13;&#10;&quot;Kennesaw Mountain.gpx&quot;&#13;&#10;&quot;Appalachian Trail_ Springer Mountain to North Carolina Border.gpx&quot;&#13;&#10;&quot;Mount Mitchell Trail.gpx&quot;&#13;&#10;&quot;Kilimanjaro.gpx&quot;"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="GPX"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:GPX/data}"/>
 </launchConfiguration>
