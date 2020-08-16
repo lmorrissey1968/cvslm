@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.prefs.Preferences;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.lmco.adp.gpx.GPX;
@@ -21,71 +20,76 @@ public class Utility_GetTimesAtPoints {
 	
 	private GPX base;
 	private Map<String, Waypoint> waypoints;
+	private boolean first = true;
 
 	public Utility_GetTimesAtPoints(String[] args) throws Exception {
+		Preferences prefs = Preferences.userNodeForPackage(Utility_GetTimesAtPoints.class);
+		
 		this.base = new GPX(Utility_GetTimesAtPoints.class.getResourceAsStream("Kennesaw Mountain - Over and Over Baseline (2020-08-05).gpx"));
 		this.waypoints = Stream.of(base.getWayPoints()).collect(Collectors.toMap(Waypoint::getName,w->w));
-
-		Preferences prefs = Preferences.userNodeForPackage(Utility_GetTimesAtPoints.class);
+		
 		File out = GUIUtil.chooseFile(null,prefs,"out.file","OandB_Waypoint_Times.csv",true,"Select",".csv",null);
 		if(out!=null) {
 			PrintStream ps = new PrintStream(out);
-			ps.printf(
-				"Description,Dist(miles),Time,%s\n",
-				waypoints.values()
-					.stream()
-					.map(Waypoint::getName)
-					.flatMap(n->IntStream.rangeClosed(1,2).mapToObj(i->String.format("%s(%s)",n,i)))
-					.collect(Collectors.joining(","))
-			);
+			Stream.of(args)
+				.map(File::new)
+				.sorted()
+				.map(LambdaExceptionWrap.wrapF(GPX::new))
+				.peek(gpx->{
+					if(first) {
+						ps.printf(
+							"Description,%s,Dist(miles),Total Time\n",
+							getWaypointTimesStream(gpx).map(WaypointTime::getName).collect(Collectors.joining(","))
+						);
+						first=false;
+					}
+				})
+				.forEach(gpx->{
+					long start = getStartPoint(gpx).getTime();
+					ps.printf(
+						"%s,%s,%.2f,%s\n",
+						gpx.getTracks()[0].getName(),
+						getWaypointTimesStream(gpx).map(wp->toDurationString(wp.getTime()-start)).collect(Collectors.joining(",")),
+						gpx.getTracksDistanceMeters()/Constants.metersPerStatuteMile,
+						toDurationString(gpx.getTracksDurationMS())
+					);
+				})
+			;
+		} else {
 			Stream.of(args)
 				.map(File::new)
 				.map(LambdaExceptionWrap.wrapF(GPX::new))
-				.forEach(gpx->processCSV(gpx,ps));
+				.forEach(gpx->dumpToConsole(gpx));
 			;
 		}
 	}
-
-	public void processCSV(GPX gpx,PrintStream ps) {
-		long start = gpx.getTrackPointStream().limit(1).findFirst().get().getTime(); 
-		TrackPoint split = getSplitPoint(gpx);
-		
-		ps.printf(
-			"%s,%.2f,%s,%s\n",
-			gpx.getTracks()[0].getName(),
-			gpx.getTracksDistanceMeters()/Constants.metersPerStatuteMile,
-			toDurationString(gpx.getTracksDurationMS()),
-
-			waypoints.values()
-				.stream()
-				.map(wp->String.format(
-					"%s,%s",
-					toDurationString(getNearestPoint(getPointsBefore(gpx,split),wp).getTime()-start),
-					toDurationString(getNearestPoint(getPointsAfter(gpx,split),wp).getTime()-start)
-				))
-				.collect(Collectors.joining(","))
-		);
-	}
 	
-	public void processFile(GPX gpx) {
-		long start = gpx.getTrackPointStream().limit(1).findFirst().get().getTime(); 
+	public WaypointTime[] getWaypointTimes(GPX gpx) { return getWaypointTimesStream(gpx).toArray(WaypointTime[]::new); }
+	
+	public Stream<WaypointTime> getWaypointTimesStream(GPX gpx) {
 		TrackPoint split = getSplitPoint(gpx);
-		
+		return waypoints.values()
+			.stream()
+			.flatMap(wp->
+				Stream.of(
+					new WaypointTime(wp,getNearestPoint(getPointsBefore(gpx,split),wp),"(O)"),
+					new WaypointTime(wp,getNearestPoint(getPointsAfter(gpx,split),wp),"(B)")
+				)
+			)
+			.sorted(Comparator.comparing(WaypointTime::getTime))
+		;
+	}
+
+	public void dumpToConsole(GPX gpx) {
+		long start = getStartPoint(gpx).getTime();
 		System.out.printf(
-			"%-24s  %.3fm   %7.0fs\n",
+			"%-25s  %.3fm   %s\n",
 			gpx.getTracks()[0].getName(),
 			gpx.getTracksDistanceMeters(),
-			gpx.getTracksDurationMS()/1000d
+			toDurationString(gpx.getTracksDurationMS())
 		);
 		
-		waypoints.values().stream().forEach(wp->{
-			System.out.printf(
-				"\t%-15s  %s  %s\n",
-				wp.getName(),
-				getNearestPoint(getPointsBefore(gpx,split),wp).getTime()-start,
-				getNearestPoint(getPointsAfter(gpx,split),wp).getTime()-start
-			);
-		});
+		getWaypointTimesStream(gpx).forEach(wp->System.out.printf("\t%-20s  %s\n",wp.getName(),toDurationString(wp.getTime()-start)));
 	}
 	
 	private Stream<TrackPoint> getPointsBefore(GPX gpx,TrackPoint split) {
@@ -107,6 +111,8 @@ public class Utility_GetTimesAtPoints {
 	
 	private TrackPoint getNearestPoint(GPX gpx,Waypoint wp) { return getNearestPoint(gpx.getTrackPointStream(),wp); }
 	private TrackPoint getSplitPoint(GPX gpx) { return getNearestPoint(gpx,waypoints.get("VC Road")); }
+	private TrackPoint getStartPoint(GPX gpx) { return getNearestPoint(getPointsBefore(gpx,getSplitPoint(gpx)),waypoints.get("Start/End")); }
+	
 	
 	public static final String toDurationString(long durMS) {
 		long tS = durMS/1000;
@@ -120,5 +126,16 @@ public class Utility_GetTimesAtPoints {
 		public Nearest(double dist,T data) { this.dist = dist; this.data = data; }
 		public double getDistance() { return dist; }
 		public T getData() { return data; }
+	}
+	
+	public static class WaypointTime {
+		private Waypoint wayp;
+		private TrackPoint trkp;
+		private String ext;
+		
+		public WaypointTime(Waypoint wayp,TrackPoint trkp, String ext) { this.wayp = wayp; this.trkp = trkp; this.ext = ext; }
+		public String getName() { return String.format("%s%s",wayp.getName(),ext); }
+		public long getTime() { return trkp.getTime(); }
+		public String toString() { return String.format("%s%s %s",wayp.getName(),ext,toDurationString(trkp.getTime())); }
 	}
 }
