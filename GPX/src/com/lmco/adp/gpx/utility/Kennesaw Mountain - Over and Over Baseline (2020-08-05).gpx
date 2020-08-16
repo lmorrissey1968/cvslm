@@ -24,6 +24,14 @@
     <name><![CDATA[Road]]></name>
     <desc><![CDATA[]]></desc>
   </wpt>
+  <wpt lat="33.96538" lon="-84.59021">
+    <name><![CDATA[Pigeon Hill]]></name>
+    <desc><![CDATA[]]></desc>
+  </wpt>
+  <wpt lat="33.96344" lon="-84.59366">
+    <name><![CDATA[Start/End]]></name>
+    <desc><![CDATA[]]></desc>
+  </wpt>
   <trk>
     <name><![CDATA[route_2020-08-05_8.47am on AllTrails]]></name>
     <desc><![CDATA[]]></desc>
