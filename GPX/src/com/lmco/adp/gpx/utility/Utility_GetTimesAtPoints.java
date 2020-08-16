@@ -58,6 +58,7 @@ public class Utility_GetTimesAtPoints {
 		} else {
 			Stream.of(args)
 				.map(File::new)
+				.sorted()
 				.map(LambdaExceptionWrap.wrapF(GPX::new))
 				.forEach(gpx->dumpToConsole(gpx));
 			;
