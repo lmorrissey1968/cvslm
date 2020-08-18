@@ -7,7 +7,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.lmco.adp.gpx.utility.Utility_GetTimesAtPoints"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;route_2020-08-02_9.24am.gpx&quot;&#13;&#10;&quot;route_2020-08-05_8.47am.gpx&quot;&#13;&#10;&quot;route_2020-08-09_8.56am.gpx&quot;&#13;&#10;&quot;route_2020-08-12_8.54am.gpx&quot;&#13;&#10;&quot;route_2020-08-16_9.20am.gpx&quot;&#13;&#10;&quot;route_2020-07-22_8.34am.gpx&quot;&#13;&#10;&quot;route_2020-07-26_8.51am.gpx&quot;&#13;&#10;&quot;route_2020-07-19_8.58am.gpx&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;${workspace_loc:GPX}/data/Kennesaw&quot;"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="GPX"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:GPX/data/Kennesaw}"/>
 </launchConfiguration>

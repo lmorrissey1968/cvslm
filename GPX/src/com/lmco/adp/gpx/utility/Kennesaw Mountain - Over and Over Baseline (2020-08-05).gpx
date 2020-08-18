@@ -8,6 +8,10 @@
     </link>
     <bounds minlat="33.96323" minlon="-84.59391" maxlat="33.98253" maxlon="-84.57305"/>
   </metadata>
+  <wpt lat="33.97009" lon="-84.58486">
+    <name><![CDATA[Switchback]]></name>
+    <desc><![CDATA[]]></desc>
+  </wpt>
   <wpt lat="33.97069" lon="-84.58691">
     <name><![CDATA[Little KM]]></name>
     <desc><![CDATA[]]></desc>
