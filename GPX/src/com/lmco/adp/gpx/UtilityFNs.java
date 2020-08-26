@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.stream.Stream;
 
+import com.lmco.adp.utility.Counter;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
 public class UtilityFNs {
@@ -25,4 +26,16 @@ public class UtilityFNs {
 		long tH = tM/60;
 		return String.format("%02d:%02d:%02d",tH,tM%60,tS%60);
 	}
+	
+	public static class Uniquer {
+		private Counter<String> uni = new Counter<>();
+		
+		public String getUniqueName(String base) {
+			uni.add(base); int n = uni.getCount(base);
+			return n>1 ? String.format("%s(%s)",base,n) : base;
+		}
+		
+		public String getUniqueName(Track trk) { return getUniqueName(trk.getName()); }
+	}
+	
 }

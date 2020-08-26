@@ -1,7 +1,6 @@
 package com.lmco.adp.gpx.utility;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.DoubleSummaryStatistics;
 import java.util.Set;
@@ -24,35 +23,33 @@ import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.Track;
 import com.lmco.adp.gpx.TrackPoint;
 import com.lmco.adp.gpx.TrackSeg;
+import com.lmco.adp.gpx.UtilityFNs;
+import com.lmco.adp.utility.Counter;
 import com.lmco.adp.utility.LatLon;
-import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
-public class Utility_PlotElevation {
-	public static int TICKS = 200;
-	public static GPX[] DATA;
+public class Utility_PlotElevation extends UtilityFNs {
+	public static void main(String[] args) { new Utility_PlotElevation(args); }
 	
-	public static void main(String[] args) {
-		TICKS = Integer.parseInt(args[0]);
-		DATA = 
-			getFiles(args)
-			.peek(System.out::println)
-	    	.map(LambdaExceptionWrap.wrapF(FileInputStream::new))
-	    	.map(LambdaExceptionWrap.wrapF(GPX::new))
-	    	.toArray(GPX[]::new)
-	    ;
+	public int mTickSz = 200;
+	public GPX[] mData;
+	
+	
+	public Utility_PlotElevation(String[] args) {
+		this.mTickSz = Integer.parseInt(args[0]);
+		this.mData = getGPXs(Arrays.copyOfRange(args,1,args.length)).toArray(GPX[]::new);
 		
 		new ChartFrame<ChartComponent>(new ChartComponent("Elevation Profile Plot","Distance(Miles)","Elevation(Feet)")){{
-//            Stream.of(DATA)
-//            	.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
-//            	.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
-//            ;
-
-            Stream.of(DATA)
-	        	.map(new FlatGPX2XYS())
-	            .forEach(this::addSeries)
-	        ;
+			//Stream.of(mData)
+			//	.map(new FlatGPX2XYS())
+			//    .forEach(this::addSeries)
+			//;
             
-            //Stream.of(DATA)
+			Stream.of(mData)
+				.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
+				.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
+			;
+
+            //Stream.of(mData)
             //	.flatMap(new GPX2XYS())
             //	.forEach(xy->addSeries(xy))
             //;
@@ -60,7 +57,7 @@ public class Utility_PlotElevation {
 			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
-			DoubleSummaryStatistics elevation = getTrackPoints(Stream.of(DATA))
+			DoubleSummaryStatistics elevation = getTrackPoints(Stream.of(mData))
 				.mapToDouble(TrackPoint::getElevationFeet)
 				.summaryStatistics()
 			;
@@ -68,10 +65,10 @@ public class Utility_PlotElevation {
 			XYPlot plot = getChartComponent().getPlot();
 			NumberAxis range = (NumberAxis)plot.getRangeAxis();
 			range.setRange(
-				Math.floor(elevation.getMin()/TICKS)*TICKS,
-				Math.ceil(elevation.getMax()/TICKS)*TICKS
+				Math.floor(elevation.getMin()/mTickSz)*mTickSz,
+				Math.ceil(elevation.getMax()/mTickSz)*mTickSz
 			);
-			range.setTickUnit(new NumberTickUnit(TICKS));
+			range.setTickUnit(new NumberTickUnit(mTickSz));
 		}};
 	}
 	
@@ -91,13 +88,14 @@ public class Utility_PlotElevation {
 	}
 	
 	public static class GPX2XYS implements Function<GPX,Stream<XYSeries>> {
+		private Uniquer uni = new Uniquer();
 		private double dist = 0;
 		private String name = "";
 		
 		public Stream<XYSeries> apply(GPX gpx) {
 			return 
 				Stream.of(gpx.getTracks())
-				.peek(trk->name = trk.getName())
+				.peek(trk->name = uni.getUniqueName(trk.getName()))
 				.map(Track::getTrackPointStream)
 				.map(tps->tps.collect(new TrackPlot(name,dist,v->dist = v)))
 			;
@@ -143,13 +141,5 @@ public class Utility_PlotElevation {
 				}
 			};
 		}
-	}
-
-	public static final Stream<File> getFiles(String[] args) {
-		return 
-			args.length>1
-			? Stream.of(args).skip(1).map(File::new)
-			: Stream.of(new File(".").listFiles())
-		;
 	}
 }
