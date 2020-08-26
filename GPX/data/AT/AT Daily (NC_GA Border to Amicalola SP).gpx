@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" creator="AllTrails.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
     <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
@@ -6,7 +6,7 @@
     <link href="http://www.alltrails.com">
       <text>AllTrails, LLC</text>
     </link>
-    <bounds minlat="34.62671" minlon="-84.19879" maxlat="34.99211" maxlon="-83.58794"/>
+    <bounds minlat="34.62671" minlon="-84.19879" maxlat="34.99211" maxlon="-83.58794" />
   </metadata>
   <wpt lat="34.73534" lon="-83.91806">
     <name><![CDATA[Neels Gap [Supply] (31.7)]]></name>
@@ -193,7 +193,7 @@
     <desc><![CDATA[]]></desc>
   </wpt>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 1</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -5792,7 +5792,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 2</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -11685,7 +11685,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 3</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -15847,7 +15847,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 4</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -23075,7 +23075,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 5</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -29172,7 +29172,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 6</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -35338,7 +35338,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 7</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>
@@ -39230,7 +39230,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name><![CDATA[AT Daily (NC/GA Border to Amicalola SP)]]></name>
+    <name>Day 8</name>
     <desc><![CDATA[]]></desc>
     <src>AllTrails</src>
     <trkseg>

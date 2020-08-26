@@ -24,6 +24,7 @@ import com.lmco.adp.gpx.Track;
 import com.lmco.adp.gpx.TrackPoint;
 import com.lmco.adp.gpx.TrackSeg;
 import com.lmco.adp.gpx.UtilityFNs;
+import com.lmco.adp.utility.Constants;
 import com.lmco.adp.utility.Counter;
 import com.lmco.adp.utility.LatLon;
 
@@ -95,7 +96,7 @@ public class Utility_PlotElevation extends UtilityFNs {
 		public Stream<XYSeries> apply(GPX gpx) {
 			return 
 				Stream.of(gpx.getTracks())
-				.peek(trk->name = uni.getUniqueName(trk.getName()))
+				.peek(trk->name = String.format("%s (%.2fmi/%.1f'climb)",uni.getUniqueName(trk.getName()),trk.getDistanceMeters()/Constants.metersPerStatuteMile,trk.getAscentFeet()))
 				.map(Track::getTrackPointStream)
 				.map(tps->tps.collect(new TrackPlot(name,dist,v->dist = v)))
 			;
