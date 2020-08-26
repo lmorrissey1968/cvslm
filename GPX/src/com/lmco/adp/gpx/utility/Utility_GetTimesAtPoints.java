@@ -4,19 +4,18 @@ import java.io.File;
 import java.io.PrintStream;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.Optional;
 import java.util.prefs.Preferences;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.TrackPoint;
+import com.lmco.adp.gpx.UtilityFNs;
 import com.lmco.adp.gpx.Waypoint;
 import com.lmco.adp.utility.Constants;
-import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 import com.lmco.adp.utility.ui.GUIUtil;
 
-public class Utility_GetTimesAtPoints {
+public class Utility_GetTimesAtPoints extends UtilityFNs {
 	public static void main(String[] args) throws Exception { new Utility_GetTimesAtPoints(args); }
 	
 	private GPX base;
@@ -108,27 +107,6 @@ public class Utility_GetTimesAtPoints {
 	private TrackPoint getNearestPoint(GPX gpx,Waypoint wp) { return getNearestPoint(gpx.getTrackPointStream(),wp); }
 	private TrackPoint getSplitPoint(GPX gpx) { return getNearestPoint(gpx,waypoints.get("VC Road")); }
 	private TrackPoint getStartPoint(GPX gpx) { return getNearestPoint(getPointsBefore(gpx,getSplitPoint(gpx)),waypoints.get("Start/End")); }
-	
-
-	public static final Stream<GPX> getGPXs(String[] args) {
-		return getFiles(args).sorted().map(LambdaExceptionWrap.wrapF(GPX::new));
-	}
-	
-	public static final Stream<File> getFiles(String[] args) {
-		File f0 = new File(args[0]);
-		return 
-			f0.isDirectory() 
-			? Stream.of(f0.listFiles(f->f.getName().toLowerCase().endsWith(".gpx"))) 
-			: Stream.of(args).map(File::new)
-		;  
-	}
-
-	public static final String toDurationString(long durMS) {
-		long tS = durMS/1000;
-		long tM = tS/60;
-		long tH = tM/60;
-		return String.format("%02d:%02d:%02d",tH,tM%60,tS%60);
-	}
 	
 	public static class Nearest<T> {
 		public double dist; public T data;
