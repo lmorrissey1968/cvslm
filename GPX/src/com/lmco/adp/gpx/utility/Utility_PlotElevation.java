@@ -42,18 +42,18 @@ public class Utility_PlotElevation extends UtilityFNs {
 		new ChartFrame<ChartComponent>(new ChartComponent("Elevation Profile Plot","Distance(Miles)","Elevation(Feet)")){{
 			//Stream.of(mData)
 			//	.map(new FlatGPX2XYS())
-			//    .forEach(this::addSeries)
+			//	.forEach(this::addSeries)
 			//;
             
-			Stream.of(mData)
-				.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
-				.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
-			;
+			//Stream.of(mData)
+			//	.map(gpx->Stream.of(gpx).flatMap(new GPX2XYS()))
+			//	.forEach(sxy->sxy.forEach(xy->addSeries(xy)))
+			//;
 
-            //Stream.of(mData)
-            //	.flatMap(new GPX2XYS())
-            //	.forEach(xy->addSeries(xy))
-            //;
+            Stream.of(mData)
+            	.flatMap(new GPX2XYS())
+            	.forEach(xy->addSeries(xy))
+            ;
 			
 			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -133,12 +133,12 @@ public class Utility_PlotElevation extends UtilityFNs {
 
 		public BiConsumer<XYSeries, TrackPoint> accumulator() {
 			return new BiConsumer<XYSeries,TrackPoint>() {
-				private LatLon last;
+				private TrackPoint last;
 				
-				public void accept(XYSeries s,TrackPoint l) {
-					tDist += last==null ? 0 : last.getDistance(l)*0.000621371;
-					last = l;
-					s.add(tDist,l.getElevationFeet());
+				public void accept(XYSeries s,TrackPoint cur) {
+					tDist += last==null ? 0 : last.getDistance(cur)/Constants.metersPerStatuteMile;
+					last = cur;
+					s.add(tDist,cur.getElevationFeet());
 				}
 			};
 		}
