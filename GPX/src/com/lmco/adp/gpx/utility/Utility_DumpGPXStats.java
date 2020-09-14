@@ -15,7 +15,6 @@ import com.lmco.adp.utility.Constants;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
 public class Utility_DumpGPXStats extends UtilityFNs {
-
 	public static void main(String[] args) throws IOException {
 		PrintStream ps = args.length<2 ? System.out : new PrintStream(new FileOutputStream(args[1]));
 		ps.println("Start_Time,End_Time,Weekday,Distance(miles),Ascent(feet),Descent(feet),Duration");
@@ -26,10 +25,11 @@ public class Utility_DumpGPXStats extends UtilityFNs {
 				GPX gpx = tup.getV2();
 				TrackPoint min = gpx.getTrackPointStream().min(Comparator.comparing(TrackPoint::getTime)).get();
 				TrackPoint max = gpx.getTrackPointStream().max(Comparator.comparing(TrackPoint::getTime)).get();
+				
 				ps.printf(
 					"%s,%s,%s,%s,%s,%s,%s\n",
-					min.getTime("yyyy-MM-dd.HH:mm:ss"),
-					max.getTime("yyyy-MM-dd.HH:mm:ss"),
+					min.getTime("yyyy-MM-dd HH:mm:ss"),
+					max.getTime("yyyy-MM-dd HH:mm:ss"),
 					min.getTime("EEEE"),
 					gpx.getTracksDistanceMeters()/Constants.metersPerStatuteMile,
 					gpx.getTracksAscentFeet(),
