@@ -1,0 +1,43 @@
+package com.lmco.adp.gpx.utility;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.util.Comparator;
+import java.util.stream.Stream;
+
+import com.lmco.adp.gpx.GPX;
+import com.lmco.adp.gpx.TrackPoint;
+import com.lmco.adp.gpx.UtilityFNs;
+import com.lmco.adp.utility.Constants;
+import com.lmco.adp.utility.streams.LambdaExceptionWrap;
+
+public class Utility_RenameGPX extends UtilityFNs {
+
+	public static void main(String[] args) {
+		getGPXFiles(args)
+			.map(LambdaExceptionWrap.wrapF(f->new Tuple<File,GPX>(f,new GPX(f))))
+			.forEach(tup->{
+				File ofn = tup.getV1();
+				GPX gpx = tup.getV2();
+				TrackPoint max = gpx.getTrackPointStream().max(Comparator.comparing(TrackPoint::getTime)).get();
+				String ts = max.getTime("yyyyMMdd_HHmmss_EEE");
+				double asc = gpx.getTracksAscentFeet();
+				double dis = gpx.getTracksDistanceMeters()/Constants.metersPerStatuteMile;
+				
+				File nfn = new File(ofn.getParentFile(),String.format("Route_%s_%02.0f_%04.0f.gpx",ts,dis,asc));
+				ofn.setLastModified(max.getTime());
+				if(ofn.renameTo(nfn))System.out.printf("%s ==> %s\n",ofn,nfn);
+			})
+		;
+	}
+	
+	public static Stream<File> getGPXFiles(String[] args) {
+		FileFilter FF_GPX = f->f.getName().toLowerCase().endsWith(".gpx");
+		return Stream.of(args)
+			.map(File::new)
+			.flatMap(fi->fi.isDirectory() ? Stream.of(fi.listFiles()) : Stream.of(fi))
+			.filter(FF_GPX::accept)
+			.sorted()
+		;
+	}
+}
