@@ -26,7 +26,7 @@ public class Utility_RenameGPX extends UtilityFNs {
 				
 				File nfn = new File(ofn.getParentFile(),String.format("Route_%s_%02.0f_%04.0f.gpx",ts,dis,asc));
 				ofn.setLastModified(max.getTime());
-				if(ofn.renameTo(nfn))System.out.printf("%s ==> %s\n",ofn,nfn);
+				if(ofn.renameTo(nfn))System.out.printf("%s ==> %s\n",ofn,nfn.getName());
 			})
 		;
 	}

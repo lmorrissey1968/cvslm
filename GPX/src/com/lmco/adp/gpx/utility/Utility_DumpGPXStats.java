@@ -21,10 +21,11 @@ public class Utility_DumpGPXStats extends UtilityFNs {
 		getGPXFiles(args)
 			.map(LambdaExceptionWrap.wrapF(f->new Tuple<File,GPX>(f,new GPX(f))))
 			.forEach(tup->{
-				File ofn = tup.getV1();
 				GPX gpx = tup.getV2();
 				TrackPoint min = gpx.getTrackPointStream().min(Comparator.comparing(TrackPoint::getTime)).get();
 				TrackPoint max = gpx.getTrackPointStream().max(Comparator.comparing(TrackPoint::getTime)).get();
+				
+				System.out.println(tup.getV1());
 				
 				ps.printf(
 					"%s,%s,%s,%s,%s,%s,%s\n",
