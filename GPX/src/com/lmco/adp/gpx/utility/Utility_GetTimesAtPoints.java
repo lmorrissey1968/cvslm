@@ -34,7 +34,7 @@ public class Utility_GetTimesAtPoints extends UtilityFNs {
 				.peek(gpx->{
 					if(first) {
 						ps.printf(
-							"Description,Start Time,End Time,%s,Dist(miles),Total Time\n",
+							"Description,Weekday,Start Time,End Time,%s,Dist(miles),Total Time\n",
 							getWaypointTimesStream(gpx).map(WaypointTime::getName).collect(Collectors.joining(","))
 						);
 						first=false;
@@ -42,11 +42,14 @@ public class Utility_GetTimesAtPoints extends UtilityFNs {
 				})
 				.forEach(gpx->{
 					long start = getStartPoint(gpx).getTime();
+					TrackPoint first = gpx.getTrackPointStream().findFirst().get();
+					TrackPoint last = gpx.getTrackPointStream().reduce((tp1,tp2)->tp2).get();
 					ps.printf(
-						"%s,%s,%s,%s,%.2f,%s\n",
+						"%s,%s,%s,%s,%s,%.2f,%s\n",
 						gpx.getTracks()[0].getName(),
-						gpx.getTrackPointStream().findFirst().get().getTime("yyyy-MM-dd.HH:mm:ss"),
-						gpx.getTrackPointStream().reduce((tp1,tp2)->tp2).get().getTime("yyyy-MM-dd.HH:mm:ss"),
+						first.getTime("EEEE"),
+						first.getTime("yyyy-MM-dd HH:mm:ss"),
+						last.getTime("yyyy-MM-dd HH:mm:ss"),
 						getWaypointTimesStream(gpx).map(wp->toDurationString(wp.getTime()-start)).collect(Collectors.joining(",")),
 						gpx.getTracksDistanceMeters()/Constants.metersPerStatuteMile,
 						toDurationString(gpx.getTracksDurationMS())
