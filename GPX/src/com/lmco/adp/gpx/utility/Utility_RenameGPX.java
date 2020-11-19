@@ -12,18 +12,22 @@ import com.lmco.adp.utility.Constants;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
 public class Utility_RenameGPX extends UtilityFNs {
-
+	//public static final LatLon KM = new LatLon(33.963548,-84.593588);
+	
 	public static void main(String[] args) {
+		
 		getGPXFiles(args)
 			.map(LambdaExceptionWrap.wrapF(f->new Tuple<File,GPX>(f,new GPX(f))))
 			.forEach(tup->{
 				File ofn = tup.getV1();
 				GPX gpx = tup.getV2();
+				//double dbh = gpx.getTrackPointStream().mapToDouble(KM::getDistance).min().getAsDouble()/Constants.metersPerStatuteMile;
 				TrackPoint max = gpx.getTrackPointStream().max(Comparator.comparing(TrackPoint::getTime)).get();
 				String ts = max.getTime("yyyyMMdd_HHmmss_EEE");
 				double asc = gpx.getTracksAscentFeet();
 				double dis = gpx.getTracksDistanceMeters()/Constants.metersPerStatuteMile;
 				
+				//File nfn = new File(ofn.getParentFile(),String.format("(%05.0f)Route_%s_%02.0f_%04.0f.gpx",dbh*10,ts,dis,asc));
 				File nfn = new File(ofn.getParentFile(),String.format("Route_%s_%02.0f_%04.0f.gpx",ts,dis,asc));
 				ofn.setLastModified(max.getTime());
 				if(ofn.renameTo(nfn))System.out.printf("%s ==> %s\n",ofn,nfn.getName());
