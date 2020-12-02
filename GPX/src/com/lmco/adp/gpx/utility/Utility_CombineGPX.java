@@ -34,13 +34,37 @@ public class Utility_CombineGPX extends UtilGPX {
 		DocumentManager doc = new DocumentManager(false);
 		Node gpx = doc.appendChild(doc.importNode(getXML(fa[0]),false));
 		
-		Stream.of(fa)
-			.map(Utility_CombineGPX::getXML)
-			.map(NodeIterator::new).flatMap(NodeIterator::stream)
+		Node[] nodes = Stream.of(fa).map(Utility_CombineGPX::getXML).toArray(Node[]::new);
+		
+		Stream.of(nodes)
+			.flatMap(NodeIterator::getStream)
+			.filter(n->n.getNodeName().equals("wpt"))
 			.forEach(n->gpx.appendChild(doc.importNode(n,true)))
 		;
 		
+		Stream.of(nodes)
+			.flatMap(NodeIterator::getStream)
+			.filter(n->n.getNodeName().equals("trk"))
+			//.forEach(n->gpx.appendChild(doc.importNode(n,true)))
+			.forEach(n->gpx.appendChild(importTRK(doc,n)))
+		;
+
 		doc.write(GUIUtil_IM.chooseFile(null,".","out.gpx"));
+	}
+	
+	public static final Node importTRK(DocumentManager doc,Node n) {
+		Node trk = doc.importNode(n,false);
+		Node trkseg = doc.importNode(getFirst(n,"trkseg"),false); 
+		trk.appendChild(doc.importNode(getFirst(n,"name"),true));
+		trk.appendChild(doc.importNode(getFirst(n,"desc"),true));
+		trk.appendChild(trkseg);
+		new NodeIterator(n)
+			.stream("trkseg")
+			.flatMap(NodeIterator::getStream)
+			.map(trkpt->doc.importNode(trkpt,true))
+			.forEach(trkseg::appendChild)
+		;
+		return trk;
 	}
 	
 	public static final Node getXML(File f) {
