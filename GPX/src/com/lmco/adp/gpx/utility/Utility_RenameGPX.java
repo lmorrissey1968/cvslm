@@ -9,19 +9,19 @@ import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.TrackPoint;
 import com.lmco.adp.gpx.UtilityFNs;
 import com.lmco.adp.utility.Constants;
+import com.lmco.adp.utility.LatLon;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
 public class Utility_RenameGPX extends UtilityFNs {
-	//public static final LatLon KM = new LatLon(33.963548,-84.593588);
+	public static final LatLon KM = new LatLon(33.963548,-84.593588);
 	
 	public static void main(String[] args) {
-		
 		getGPXFiles(args)
 			.map(LambdaExceptionWrap.wrapF(f->new Tuple<File,GPX>(f,new GPX(f))))
 			.forEach(tup->{
 				File ofn = tup.getV1();
 				GPX gpx = tup.getV2();
-				//double dbh = gpx.getTrackPointStream().mapToDouble(KM::getDistance).min().getAsDouble()/Constants.metersPerStatuteMile;
+				double dbh = gpx.getTrackPointStream().mapToDouble(KM::getDistance).min().getAsDouble()/Constants.metersPerStatuteMile;
 				TrackPoint max = gpx.getTrackPointStream().max(Comparator.comparing(TrackPoint::getTime)).get();
 				String ts = max.getTime("yyyyMMdd_HHmmss_EEE");
 				double asc = gpx.getTracksAscentFeet();
