@@ -8,12 +8,14 @@
  * 
  */
 
-package com.lmco.adp.gpx;
+package com.lmco.adp.gpx.util;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
+import java.io.File;
+import java.io.FileFilter;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -25,14 +27,16 @@ import org.w3c.dom.CharacterData;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.utility.LatLon;
+import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
 /**
  * Utilities for GPX file processing
  *
  * @author Lawrence Morrissey (g137997)
  */
-public class UtilGPX {
+public class UtilityFunctions {
 	public static final Node getFirst(Node parent,String tag) {
 		return new NodeIterator(parent).stream().filter(n->tag.equals(n.getNodeName())).findFirst().orElse(null);
 	}
@@ -127,4 +131,22 @@ public class UtilGPX {
 			}
 		};
     }
+    
+	public static Stream<GPX> getGPXs(String[] args) {
+		FileFilter FF_GPX = f->f.getName().toLowerCase().endsWith(".gpx");
+		return Stream.of(args)
+			.map(File::new)
+			.flatMap(fi->fi.isDirectory() ? Stream.of(fi.listFiles()) : Stream.of(fi))
+			.filter(FF_GPX::accept)
+			.sorted()
+			.map(LambdaExceptionWrap.wrapF(GPX::new))
+		;
+	}
+
+	public static String toDurationString(long durMS) {
+		long tS = durMS/1000;
+		long tM = tS/60;
+		long tH = tM/60;
+		return String.format("%02d:%02d:%02d",tH,tM%60,tS%60);
+	}
 }

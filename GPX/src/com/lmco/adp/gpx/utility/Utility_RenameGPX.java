@@ -7,12 +7,13 @@ import java.util.stream.Stream;
 
 import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.TrackPoint;
-import com.lmco.adp.gpx.UtilityFNs;
+import com.lmco.adp.gpx.util.Tuple;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.Constants;
 import com.lmco.adp.utility.LatLon;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
-public class Utility_RenameGPX extends UtilityFNs {
+public class Utility_RenameGPX extends UtilityFunctions {
 	public static final LatLon KM = new LatLon(33.963548,-84.593588);
 	
 	public static void main(String[] args) {

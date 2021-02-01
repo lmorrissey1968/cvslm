@@ -19,15 +19,15 @@ import javax.swing.filechooser.FileFilter;
 
 import org.w3c.dom.Node;
 
-import com.lmco.adp.gpx.NodeIterator;
-import com.lmco.adp.gpx.UtilGPX;
+import com.lmco.adp.gpx.util.NodeIterator;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.ui.GUIUtil_IM;
 import com.lmco.adp.utility.xml.DocumentManager;
 
 /**
  * @author Lawrence Morrissey (lmorr)
  */
-public class Utility_CombineGPX extends UtilGPX {
+public class Utility_CombineGPX extends UtilityFunctions {
 	public static void main(String[] args) throws Exception {
 		File[] fa = getFiles(args.length>0?args[0]:".").toArray(File[]::new);
 

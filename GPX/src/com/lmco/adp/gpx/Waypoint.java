@@ -12,6 +12,7 @@ package com.lmco.adp.gpx;
 
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.LatLon;
 
 /**
@@ -24,11 +25,11 @@ public class Waypoint extends LatLon {
 	
 	public Waypoint(Node wpt) {
 		super(
-			UtilGPX.getAttributeDouble(wpt,"lat"),
-			UtilGPX.getAttributeDouble(wpt,"lon")
+			UtilityFunctions.getAttributeDouble(wpt,"lat"),
+			UtilityFunctions.getAttributeDouble(wpt,"lon")
 		);
-    	this.mName = UtilGPX.getCDATA(UtilGPX.getFirst(wpt,"name"));
-    	this.mDesc = UtilGPX.getCDATA(UtilGPX.getFirst(wpt,"desc"));
+    	this.mName = UtilityFunctions.getCDATA(UtilityFunctions.getFirst(wpt,"name"));
+    	this.mDesc = UtilityFunctions.getCDATA(UtilityFunctions.getFirst(wpt,"desc"));
 	}
 	
 	public String getName() { return mName; }

@@ -15,12 +15,15 @@ import java.util.stream.Stream;
 
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.util.NodeIterator;
+import com.lmco.adp.gpx.util.UtilityFunctions;
+
 /**
  * Track (trk) node of a GPX file.
  *
  * @author Lawrence Morrissey (g137997)
  */ 
-public class Track extends UtilGPX {
+public class Track extends UtilityFunctions {
 	private String mName;
 	private TrackSeg[] mTrackSegs;
 	

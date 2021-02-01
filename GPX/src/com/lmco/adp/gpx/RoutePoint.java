@@ -12,6 +12,7 @@ package com.lmco.adp.gpx;
 
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.LatLon;
 
 /**
@@ -22,8 +23,8 @@ import com.lmco.adp.utility.LatLon;
 public class RoutePoint extends LatLon {
 	public RoutePoint(Node rtept) {
 		super(
-			UtilGPX.getAttributeDouble(rtept,"lat"),
-			UtilGPX.getAttributeDouble(rtept,"lon")
+			UtilityFunctions.getAttributeDouble(rtept,"lat"),
+			UtilityFunctions.getAttributeDouble(rtept,"lon")
 		);
 	}
 }

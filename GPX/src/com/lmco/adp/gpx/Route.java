@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.util.NodeIterator;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.streams.CollectorPath2D;
 
 /**
@@ -23,7 +25,7 @@ import com.lmco.adp.utility.streams.CollectorPath2D;
  *
  * @author Lawrence Morrissey (g137997)
  */ 
-public class Route extends UtilGPX {
+public class Route extends UtilityFunctions {
 	private String mName,mDesc;
 	private RoutePoint[] mRoutePoints;
 	private Path2D mPath;

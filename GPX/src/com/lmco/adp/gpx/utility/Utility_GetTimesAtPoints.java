@@ -10,12 +10,13 @@ import java.util.stream.Stream;
 
 import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.TrackPoint;
-import com.lmco.adp.gpx.UtilityFNs;
 import com.lmco.adp.gpx.Waypoint;
+import com.lmco.adp.gpx.util.Nearest;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.Constants;
 import com.lmco.adp.utility.ui.GUIUtil;
 
-public class Utility_GetTimesAtPoints extends UtilityFNs {
+public class Utility_GetTimesAtPoints extends UtilityFunctions {
 	public static void main(String[] args) throws Exception { new Utility_GetTimesAtPoints(args); }
 	
 	private GPX base;
@@ -110,13 +111,6 @@ public class Utility_GetTimesAtPoints extends UtilityFNs {
 	private TrackPoint getNearestPoint(GPX gpx,Waypoint wp) { return getNearestPoint(gpx.getTrackPointStream(),wp); }
 	private TrackPoint getSplitPoint(GPX gpx) { return getNearestPoint(gpx,waypoints.get("VC Road")); }
 	private TrackPoint getStartPoint(GPX gpx) { return getNearestPoint(getPointsBefore(gpx,getSplitPoint(gpx)),waypoints.get("Start/End")); }
-	
-	public static class Nearest<T> {
-		public double dist; public T data;
-		public Nearest(double dist,T data) { this.dist = dist; this.data = data; }
-		public double getDistance() { return dist; }
-		public T getData() { return data; }
-	}
 	
 	public static class WaypointTime {
 		private Waypoint wayp;

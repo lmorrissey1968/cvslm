@@ -8,7 +8,7 @@
  * 
  */
 
-package com.lmco.adp.gpx;
+package com.lmco.adp.gpx.util;
 
 import java.util.Iterator;
 import java.util.stream.Stream;

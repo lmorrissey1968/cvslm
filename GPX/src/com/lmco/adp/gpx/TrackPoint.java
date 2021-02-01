@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.LatLon;
 
 /**
@@ -30,16 +31,16 @@ public class TrackPoint extends LatLon {
 	
 	public TrackPoint(Node trkpt) {
 		super(
-			UtilGPX.getAttributeDouble(trkpt,"lat"),
-			UtilGPX.getAttributeDouble(trkpt,"lon"),
-			java.lang.Double.parseDouble(UtilGPX.getFirst(trkpt,"ele").getTextContent()),
+			UtilityFunctions.getAttributeDouble(trkpt,"lat"),
+			UtilityFunctions.getAttributeDouble(trkpt,"lon"),
+			java.lang.Double.parseDouble(UtilityFunctions.getFirst(trkpt,"ele").getTextContent()),
 			false,
 			true
 		);
 		
 		try {
-			Node time = UtilGPX.getFirst(trkpt,"time");
-			if(time!=null)this.time = FMT.parse(UtilGPX.getFirst(trkpt,"time").getTextContent().replaceFirst("Z","+0000")).getTime();
+			Node time = UtilityFunctions.getFirst(trkpt,"time");
+			if(time!=null)this.time = FMT.parse(UtilityFunctions.getFirst(trkpt,"time").getTextContent().replaceFirst("Z","+0000")).getTime();
 		} catch(Exception exc) {
 			throw new RuntimeException(exc);
 		}

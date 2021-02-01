@@ -17,6 +17,8 @@ import java.util.stream.Stream;
 
 import org.w3c.dom.Node;
 
+import com.lmco.adp.gpx.util.NodeIterator;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.xml.DocumentManager;
 
 /**
@@ -24,7 +26,7 @@ import com.lmco.adp.utility.xml.DocumentManager;
  *
  * @author Lawrence Morrissey (g137997)
  */ 
-public class GPX extends UtilGPX {
+public class GPX extends UtilityFunctions {
 	private String mName,mDesc;
 	private Waypoint[] mWayPoints;
 	private Track[] mTracks;

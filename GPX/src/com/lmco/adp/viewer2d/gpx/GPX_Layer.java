@@ -43,7 +43,7 @@ import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.Route;
 import com.lmco.adp.gpx.Track;
 import com.lmco.adp.gpx.TrackSeg;
-import com.lmco.adp.gpx.UtilGPX;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.graphics.strokes.ShapeStroke;
 import com.lmco.adp.utility.streams.CollectorPath2D;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
@@ -60,7 +60,7 @@ import com.lmco.adp.viewer2d.projection.Projection_IF;
  *
  * @author Lawrence Morrissey (g137997)
  */
-public class GPX_Layer extends UtilGPX implements MouseActiveLayer,ProjectionListener_IF,Stackable_IF {
+public class GPX_Layer extends UtilityFunctions implements MouseActiveLayer,ProjectionListener_IF,Stackable_IF {
 	public static final Stroke ARROW_STROKE = new ShapeStroke(15,getArrow(5));
 	
 	private LayerManager mManager;
@@ -257,8 +257,8 @@ public class GPX_Layer extends UtilGPX implements MouseActiveLayer,ProjectionLis
 	private void repaintMe() { mManager.repaint(this); }
 	
 	public JToggleButton getToolbarToggleButton() { return new JToggleButton("GPX"); }
-	public ActionListener getLowerButtonLeftClickAction() { return null; }
-	public ActionListener getLowerButtonRightClickAction() { return null; }
+	public ActionListener getLowerButtonLeftClickAction() { return e->{}; }
+	public ActionListener getLowerButtonRightClickAction() { return e->{}; }
 	public JComponent[] getNonStackableTools() { return null; }
 	
 

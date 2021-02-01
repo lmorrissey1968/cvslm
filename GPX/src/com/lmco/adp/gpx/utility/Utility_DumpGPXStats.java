@@ -10,11 +10,12 @@ import java.util.stream.Stream;
 
 import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.TrackPoint;
-import com.lmco.adp.gpx.UtilityFNs;
+import com.lmco.adp.gpx.util.Tuple;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.Constants;
 import com.lmco.adp.utility.streams.LambdaExceptionWrap;
 
-public class Utility_DumpGPXStats extends UtilityFNs {
+public class Utility_DumpGPXStats extends UtilityFunctions {
 	public static void main(String[] args) throws IOException {
 		PrintStream ps = args.length<2 ? System.out : new PrintStream(new FileOutputStream(args[1]));
 		ps.println("Start_Time,End_Time,Weekday,Distance(miles),Ascent(feet),Descent(feet),Duration");

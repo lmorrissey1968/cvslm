@@ -23,12 +23,11 @@ import com.lmco.adp.gpx.GPX;
 import com.lmco.adp.gpx.Track;
 import com.lmco.adp.gpx.TrackPoint;
 import com.lmco.adp.gpx.TrackSeg;
-import com.lmco.adp.gpx.UtilityFNs;
+import com.lmco.adp.gpx.util.Uniquer;
+import com.lmco.adp.gpx.util.UtilityFunctions;
 import com.lmco.adp.utility.Constants;
-import com.lmco.adp.utility.Counter;
-import com.lmco.adp.utility.LatLon;
 
-public class Utility_PlotElevation extends UtilityFNs {
+public class Utility_PlotElevation extends UtilityFunctions {
 	public static void main(String[] args) { new Utility_PlotElevation(args); }
 	
 	public int mTickSz = 200;
