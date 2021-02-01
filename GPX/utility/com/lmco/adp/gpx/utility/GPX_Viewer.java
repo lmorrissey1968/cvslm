@@ -10,7 +10,7 @@
  * 
  */
 
-package com.lmco.adp.utility;
+package com.lmco.adp.gpx.utility;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,6 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import com.lmco.adp.utility.EnhancedProperties;
 import com.lmco.adp.utility.ui.ColumnLayout;
 import com.lmco.adp.utility.ui.DegreesTextField;
 import com.lmco.adp.utility.ui.DoubleTextField;
@@ -65,7 +66,7 @@ import com.lmco.adp.viewer2d.util.ProjectionTypeChooserComboBox;
  * @author Lawrence Morrissey
  * @version $Revision: 1.19 $
  */
-public class GPX_Utility extends MemoryFramePrefs
+public class GPX_Viewer extends MemoryFramePrefs
 {
 	public static final String KEY_VIEWER_TRANSFORM = "viewer.transform";
 	public static final String KEY_EYE_POSITION = "eye.position";
@@ -79,9 +80,9 @@ public class GPX_Utility extends MemoryFramePrefs
 
 	private Boundaries mBoundaries;
 	
-	public GPX_Utility() throws NumberFormatException, IOException, ParseException, Exception
+	public GPX_Viewer() throws NumberFormatException, IOException, ParseException, Exception
 	{
-		super("GPX Utility",GPX_Utility.class,"gpx.utility");
+		super("GPX Utility",GPX_Viewer.class,"gpx.utility");
 		
 		setJMenuBar(this.mMenuBar = new JMenuBar());
 		setLayout(new BorderLayout());
@@ -225,7 +226,7 @@ public class GPX_Utility extends MemoryFramePrefs
 	}
 	
 	public static void main(String[] args) throws Exception {
-		new GPX_Utility();
+		new GPX_Viewer();
 //		PrintStream output = new PrintStream(new ErrorView());
 //		System.setOut(output);
 //		System.setErr(output);
