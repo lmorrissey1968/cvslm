@@ -63,7 +63,7 @@ public class GPX extends UtilityFunctions {
 			.toArray(Route[]::new)
 		;
 	}
-	
+
 	public Track[] getTracks() { return this.mTracks; }
 	public double getTracksAscentFeet() { return Stream.of(mTracks).mapToDouble(Track::getAscentFeet).sum(); }
 	public double getTracksDescentFeet() { return Stream.of(mTracks).mapToDouble(Track::getDescentFeet).sum(); }
@@ -79,4 +79,5 @@ public class GPX extends UtilityFunctions {
 	
 	public Stream<TrackPoint> getTrackPointStream() { return Stream.of(mTracks).flatMap(Track::getTrackPointStream); }
 	public Stream<RoutePoint> getRoutePointStream() { return Stream.of(mRoutes).flatMap(Route::getRoutePointStream); }
+	public Stream<Waypoint> getWayPointStream() { return Stream.of(mWayPoints); }
 }

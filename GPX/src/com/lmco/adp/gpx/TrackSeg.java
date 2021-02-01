@@ -32,16 +32,21 @@ public class TrackSeg extends UtilityFunctions {
 	private Rectangle2D mBounds;
 	
 	public TrackSeg(Node trkseg) {
-		this.mTrackPoints = 
+		setTrackPoints(
 			new NodeIterator(trkseg).stream("trkpt")
 			.map(TrackPoint::new)
 			.toArray(TrackPoint[]::new)
-		;
+		);
+	}
+	
+	public void setTrackPoints(TrackPoint[] tpa) { 
+		this.mTrackPoints = tpa; 
 		this.mPath = Stream.of(mTrackPoints).collect(new CollectorPath2D(false));
 		this.mBounds = mPath.getBounds2D();
 	}
 	
 	public TrackPoint[] getTrackPoints() { return mTrackPoints; }
+	
 	public Path2D getPath() { return mPath; }
 	public Rectangle2D getBounds() { return mBounds; }
 	
